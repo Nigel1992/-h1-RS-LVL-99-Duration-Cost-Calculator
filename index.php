@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RuneScape Level 99/120 Cost & Duration Calculator</title>
+    <title>RuneScape Skill Level Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -79,7 +79,7 @@
 </head>
 <body>
 
-<h1>RuneScape Level 99/120 Cost & Duration Calculator</h1>
+<h1>RuneScape Skill Level Calculator</h1>
 
 <form method="post">
     <label for="username">Username:</label>
@@ -94,20 +94,7 @@
     <label for="xp_per_item">XP per Item:</label>
     <input type="number" name="xp_per_item" id="xp_per_item" required value="<?php echo isset($_POST['xp_per_item']) ? htmlspecialchars($_POST['xp_per_item']) : ''; ?>"><br>
 
-    <label for="selected_skill">Select a Skill:</label>
-    <select name="selected_skill" id="selected_skill">
-        <option value="Prayer">Prayer</option>
-        <option value="Magic">Magic</option>
-        <option value="Construction">Construction</option>
-        <option value="Herblore">Herblore</option>
-        <option value="Crafting">Crafting</option>
-        <option value="Fletching">Fletching</option>
-        <option value="Smithing">Smithing</option>
-        <option value="Cooking">Cooking</option>
-        <option value="Farming">Farming</option>
-    </select>
-
-    <input type="submit" value="Calculate">
+    <input type="submit" value="Get Skill Level">
 </form>
 
 <?php
@@ -181,47 +168,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $xpPerHour = $_POST["xp_per_hour"];
     $pricePerItem = $_POST["price_per_item"];
     $xpPerItem = $_POST["xp_per_item"];
-    $selectedSkill = $_POST["selected_skill"];
 
     // Fetch player information
     $info = getPlayerInfo($username);
 
     if ($info) {
+        // Skill selection
+        $selected_skill = $_POST["selected_skill"];
+
         // Calculate XP required for level 99
-        $xpRequired99 = 13034431 - $info[$selectedSkill]["xp"];
+        $xpRequired = 13034431 - $info[$selected_skill]["xp"];
         // Calculate XP required for level 120
-        $xpRequired120 = 104273167 - $info[$selectedSkill]["xp"];
+        $xpRequired120 = 104273167 - $info[$selected_skill]["xp"];
 
         // Calculate hours required for level 99
-        $hoursRequired99 = ceil($xpRequired99 / $xpPerHour);
+        $hoursRequired = ceil($xpRequired / $xpPerHour);
         // Calculate hours required for level 120
         $hoursRequired120 = ceil($xpRequired120 / $xpPerHour);
 
         // Calculate number of items required for level 99
-        $itemsRequired99 = ceil($xpRequired99 / $xpPerItem);
+        $itemsRequired = ceil($xpRequired / $xpPerItem);
         // Calculate number of items required for level 120
         $itemsRequired120 = ceil($xpRequired120 / $xpPerItem);
 
         // Calculate total cost for level 99
-        $totalCost99 = $itemsRequired99 * $pricePerItem;
+        $totalCost = $itemsRequired * $pricePerItem;
         // Calculate total cost for level 120
         $totalCost120 = $itemsRequired120 * $pricePerItem;
 
         // Format total cost for level 99
-        $formattedCost99 = number_format($totalCost99, 0);
+        $formattedCost = number_format($totalCost, 0);
         // Format total cost for level 120
         $formattedCost120 = number_format($totalCost120, 0);
 
         echo "<div class='result'>";
-        echo "<h2>Current $selectedSkill Level for Player $username: " . $info[$selectedSkill]["level"] . "</h2>";
-        echo "<h3>Estimated Time and Cost to Reach Level 99 $selectedSkill:</h3>";
-        echo "<p>XP Required: $xpRequired99</p>";
+        echo "<h2>Current $selected_skill Level for Player $username: " . $info[$selected_skill]["level"] . "</h2>";
+        echo "<h3>Estimated Time and Cost to Reach Level 99 $selected_skill:</h3>";
+        echo "<p>XP Required: $xpRequired</p>";
         echo "<p>XP per Hour: $xpPerHour</p>";
-        echo "<p>Hours Required: $hoursRequired99</p>";
-        echo "<p>Items Required: $itemsRequired99</p>";
-        echo "<p>Total Cost: $formattedCost99 coins</p>";
+        echo "<p>Hours Required: $hoursRequired</p>";
+        echo "<p>Items Required: $itemsRequired</p>";
+        echo "<p>Total Cost: $formattedCost coins</p>";
 
-        echo "<h3>Estimated Time and Cost to Reach Level 120 $selectedSkill:</h3>";
+        echo "<h3>Estimated Time and Cost to Reach Level 120 $selected_skill:</h3>";
         echo "<p>XP Required: $xpRequired120</p>";
         echo "<p>XP per Hour: $xpPerHour</p>";
         echo "<p>Hours Required: $hoursRequired120</p>";
@@ -233,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<h3>Days Required for Different Hours per Day for Level 99:</h3>";
         echo "<ul>";
         foreach ($hoursPerDay as $hours) {
-            $days = ceil($hoursRequired99 / $hours);
+            $days = ceil($hoursRequired / $hours);
             echo "<li>$hours hours/day: $days days</li>";
         }
         echo "</ul>";
