@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RuneScape Skill Level Calculator</title>
+    <title>RuneScape Level 99/120 Cost & Duration Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -79,20 +79,21 @@
 </head>
 <body>
 
-<h1>RuneScape Skill Level Calculator</h1>
+<h1>RuneScape Level 99/120 Cost & Duration Calculator</h1>
 
 <form method="post">
     <label for="username">Username:</label>
     <input type="text" name="username" id="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"><br>
 
-    <label for="xp_per_hour">XP per Hour:</label>
+    <label for="xp_per_hour">XP/Hour:</label>
     <input type="number" name="xp_per_hour" id="xp_per_hour" required value="<?php echo isset($_POST['xp_per_hour']) ? htmlspecialchars($_POST['xp_per_hour']) : ''; ?>"><br>
 
-    <label for="price_per_item">Price per Item:</label>
+    <label for="xp_per_item">XP/Item:</label>
+    <input type="number" name="xp_per_item" id="xp_per_item" required value="<?php echo isset($_POST['xp_per_item']) ? htmlspecialchars($_POST['xp_per_item']) : ''; ?>"><br>
+	
+    <label for="price_per_item">Price/Item [each]:</label>
     <input type="number" name="price_per_item" id="price_per_item" required value="<?php echo isset($_POST['price_per_item']) ? htmlspecialchars($_POST['price_per_item']) : ''; ?>"><br>
 
-    <label for="xp_per_item">XP per Item:</label>
-    <input type="number" name="xp_per_item" id="xp_per_item" required value="<?php echo isset($_POST['xp_per_item']) ? htmlspecialchars($_POST['xp_per_item']) : ''; ?>"><br>
 
     <label for="selected_skill">Select a Skill:</label>
     <select name="selected_skill" id="selected_skill">
