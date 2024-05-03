@@ -4,10 +4,12 @@ It'll then tell you the estimated time and cost to reach level X in Skill X:
 
 <h2>Features</h2>
 * Shows your current Level in a skill
-
+* Calculate with/without XP/Item
+* Calculate with/without Price/Item
+* Supports all 29 skills in RuneScape 3
+* Supports level 1 to 99/120/MAX 200m xp
 
 <h2>Output</h2>
-
 * XP Required
 * XP per Hour
 * Hours/Minutes Required
