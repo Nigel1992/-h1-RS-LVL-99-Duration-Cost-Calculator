@@ -36,8 +36,7 @@ This application utilizes the RuneScape Hiscores API to fetch player information
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 
-
-##NOTE
+## NOTE
 This code was made by AI and tested by me.
 <br>
 Feel free to contact me on Discord for any help or suggestions: nigel.92
