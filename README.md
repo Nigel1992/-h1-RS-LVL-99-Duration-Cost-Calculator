@@ -1,5 +1,7 @@
 Grabs and shows your current level from RuneScape 3 hiscores.
+<br>
 You just need to provide the XP rates per hour, the price of the item being used and the xp for the item.
+<br>
 It'll then tell you the estimated time and cost to reach level X in Skill X:
 
 <h2>Features</h2>
@@ -8,7 +10,7 @@ It'll then tell you the estimated time and cost to reach level X in Skill X:
 * Calculate with/without XP/Item
 * Calculate with/without Price/Item
 * Supports all 29 skills in RuneScape 3
-* Supports level 1 to 99/120/MAX 200m xp
+* Supports any level to level [incl 99/120/MAX 200m xp]
 
 
 <h2>Output</h2>
