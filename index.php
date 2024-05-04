@@ -106,14 +106,14 @@
 
     <label for="selected_skill">Select a Skill:</label>
 <select name="selected_skill" id="selected_skill">
-    <?php
-        $skills = array(
-            "Prayer", "Magic", "Construction", "Herblore", "Crafting", "Fletching", "Smithing", "Cooking", 
-            "Farming", "Agility", "Thieving", "Ranged", "Mining", "Woodcutting", "Firemaking", "Runecrafting", 
-            "Hunter", "Construction", "Slayer", "Fishing", "Herblore", "Crafting", "Fletching", "Smithing", 
-            "Cooking", "Farming", "Summoning", "Dungeoneering", "Divination", "Invention", "Archaeology", 
-            "Necromancy"
-        );
+         <?php
+            $skills = array(
+    "Attack", "Strength", "Defence", "Prayer", "Magic", "Construction", "Herblore", "Crafting", "Fletching", "Smithing", "Cooking", 
+    "Farming", "Agility", "Thieving", "Ranged", "Mining", "Woodcutting", "Firemaking", "Runecrafting", 
+    "Hunter", "Slayer", "Fishing", "Summoning", "Dungeoneering", "Divination", "Invention", "Archaeology", 
+    "Necromancy"
+);
+
 
         sort($skills); // Sort the array alphabetically
 
