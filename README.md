@@ -1,5 +1,17 @@
 # RuneScape Leveling Cost & Duration Calculator
 
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Example](#example)
+4. [How to Use](#how-to-use)
+5. [Notes](#notes)
+6. [Credits](#credits)
+7. [License](#license)
+8. [Changelog](#changelog)
+    - [Version 1.1.0](#version-110)
+
 ## Overview
 This web application provides a convenient way to estimate the time and cost required to reach a specific level in a chosen skill in the game RuneScape. By inputting your current in-game username, desired skill, target level, and other relevant parameters, the calculator will provide you with an estimate of the hours, minutes, and cost required to achieve your goal.
 
@@ -11,8 +23,9 @@ This web application provides a convenient way to estimate the time and cost req
 - Optionally input XP/Item and Price/Item values to calculate the total cost.
 - Get detailed estimates for hours, minutes, and cost required to reach your goal.
 - See how the duration changes based on different hours per day.
-  
-## Example using my account, prayer with Dragon Bones + Burial Powder
+
+## Example
+Using my account, prayer with Dragon Bones + Burial Powder
 ![image](https://github.com/Nigel1992/RuneScape-LVL-99-120-Cost-Duration-Calculator/assets/5491930/158edf73-bc9d-4538-a5bf-10bc26ae035f)
 
 ## How to Use
@@ -37,7 +50,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Changelog
 
-### [Version 1.1.0] - 2024-05-06
+### Version 1.1.0 - 2024-05-06
 
 #### Changed
 - Updated background and text colors for better readability and user experience.
@@ -52,5 +65,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 This code was made by AI and tested by me.
 <br>
 Feel free to contact me on Discord for any help or suggestions: nigel.92
-
-
