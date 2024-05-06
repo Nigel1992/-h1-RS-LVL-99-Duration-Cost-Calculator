@@ -10,7 +10,6 @@
 6. [Credits](#credits)
 7. [License](#license)
 8. [Changelog](#changelog)
-    - [Version 1.1.0](##version-110)
 
 ## Overview
 This web application provides a convenient way to estimate the time and cost required to reach a specific level in a chosen skill in the game RuneScape. By inputting your current in-game username, desired skill, target level, and other relevant parameters, the calculator will provide you with an estimate of the hours, minutes, and cost required to achieve your goal.
