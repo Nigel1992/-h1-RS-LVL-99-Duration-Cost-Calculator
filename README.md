@@ -76,3 +76,8 @@ This project is licensed under the MIT License. See the LICENSE file for details
 This code was made by AI and tested by me.
 <br>
 Feel free to contact me on Discord for any help or suggestions: nigel.92
+
+## Third-Party URLs
+
+- RuneScape Hiscores API: [https://secure.runescape.com/m=hiscore/index_lite.ws](https://secure.runescape.com/m=hiscore/index_lite.ws) - Used to fetch player information such as levels and experience points.
+- RuneScape Avatar API: [http://secure.runescape.com/m=avatar-rs/USERNAME/chat.png](http://secure.runescape.com/m=avatar-rs/USERNAME/chat.png) - Utilized to display the user's in-game avatar dynamically based on the provided username.
