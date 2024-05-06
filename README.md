@@ -81,3 +81,7 @@ Feel free to contact me on Discord for any help or suggestions: nigel.92
 
 - RuneScape Hiscores API: [https://secure.runescape.com/m=hiscore/index_lite.ws](https://secure.runescape.com/m=hiscore/index_lite.ws) - Used to fetch player information such as levels and experience points.
 - RuneScape Avatar API: [http://secure.runescape.com/m=avatar-rs/USERNAME/chat.png](http://secure.runescape.com/m=avatar-rs/USERNAME/chat.png) - Utilized to display the user's in-game avatar dynamically based on the provided username.
+
+## Legal Disclaimer
+
+This project is not affiliated with, endorsed, sponsored, or specifically approved by RuneScape or its parent company Jagex Limited. RuneScape and Jagex are trademarks or registered trademarks of Jagex Limited. All product and company names are the registered trademarks of their original owners. The use of any trade name or trademark is for identification and reference purposes only and does not imply any association with the trademark holder of their product brand. This project is for educational and informational purposes only.
