@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RuneScape Leveling Cost & Duration Calculator</title>
     <link rel="icon" type="image/png" href="https://runescape.wiki/images/Hourglass.png">
-    
+    <!-- Updated CSS styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -119,30 +119,89 @@
 <h1>RuneScape Leveling Cost & Duration Calculator</h1>
 
 <form id="calcForm" method="post">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required value="<?php echo isset($_COOKIE['saved_username']) ? htmlspecialchars($_COOKIE['saved_username']) : ''; ?>"><br>
-	
-	<!-- Checkbox to save username -->
-    <input type="checkbox" id="saveUsernameCheckbox">
-    <label for="saveUsernameCheckbox">Remember Username</label><br>
+<label for="username">
+    Username: 
+    <abbr title="Enter your RuneScape username/displayname.." onclick="showExplanation('usernameExplanation')">ℹ️</abbr>
+</label>
+<input type="text" name="username" id="username" required value="<?php echo isset($_COOKIE['saved_username']) ? htmlspecialchars($_COOKIE['saved_username']) : ''; ?>"><br>
+<div id="usernameExplanation" class="explanation" style="display: none;">
+    Enter your RuneScape username/displayname.
+</div>
 
-    <label for="xp_per_hour">XP/Hour:</label>
-    <input type="number" name="xp_per_hour" id="xp_per_hour" required value="<?php echo isset($_POST['xp_per_hour']) ? htmlspecialchars($_POST['xp_per_hour']) : ''; ?>"><br>
+<input type="checkbox" id="saveUsernameCheckbox">
+<label for="saveUsernameCheckbox">
+    Remember Username 
+    <abbr title="Check to remember your username for future visits." onclick="showExplanation('saveUsernameExplanation')">ℹ️</abbr>
+</label><br>
+<div id="saveUsernameExplanation" class="explanation" style="display: none;">
+    Check to remember your username for future visits.
+</div>
 
-    <label for="xp_per_item">XP/Item:</label>
-    <input type="number" name="xp_per_item" id="xp_per_item" <?php echo isset($_POST['use_xp_item']) && $_POST['use_xp_item'] == 'on' ? 'disabled' : ''; ?> value="<?php echo isset($_POST['xp_per_item']) ? htmlspecialchars($_POST['xp_per_item']) : ''; ?>"><br>
-    
-    <label for="price_per_item">Price/Item [each]:</label>
-    <input type="number" name="price_per_item" id="price_per_item" <?php echo isset($_POST['use_price_item']) && $_POST['use_price_item'] == 'on' ? 'disabled' : ''; ?> value="<?php echo isset($_POST['price_per_item']) ? htmlspecialchars($_POST['price_per_item']) : ''; ?>"><br>
+<label for="xp_per_hour">
+    XP/Hour: 
+    <abbr title="Enter the amount of XP you earn per hour in your chosen skill." onclick="showExplanation('xpPerHourExplanation')">ℹ️</abbr>
+</label>
+<input type="number" name="xp_per_hour" id="xp_per_hour" required value="<?php echo isset($_POST['xp_per_hour']) ? htmlspecialchars($_POST['xp_per_hour']) : ''; ?>"><br>
+<div id="xpPerHourExplanation" class="explanation" style="display: none;">
+    Enter the amount of XP you earn per hour in your chosen skill.
+</div>
 
-    <input type="checkbox" name="use_xp_item" id="use_xp_item" <?php echo isset($_POST['use_xp_item']) && $_POST['use_xp_item'] == 'on' ? 'checked' : ''; ?>>
-    <label for="use_xp_item">Exclude XP/Item</label><br>
-    
-    <input type="checkbox" name="use_price_item" id="use_price_item" <?php echo isset($_POST['use_price_item']) && $_POST['use_price_item'] == 'on' ? 'checked' : ''; ?>>
-    <label for="use_price_item">Exclude Price/Item</label><br>
+<label for="xp_per_item">
+    XP/Item: 
+    <abbr title="Enter the amount of XP you earn per item, if applicable." onclick="showExplanation('xpPerItemExplanation')">ℹ️</abbr>
+</label>
+<input type="number" name="xp_per_item" id="xp_per_item" <?php echo isset($_POST['use_xp_item']) && $_POST['use_xp_item'] == 'on' ? 'disabled' : ''; ?> value="<?php echo isset($_POST['xp_per_item']) ? htmlspecialchars($_POST['xp_per_item']) : ''; ?>"><br>
+<div id="xpPerItemExplanation" class="explanation" style="display: none;">
+    Enter the amount of XP you earn per item, if applicable.
+</div>
 
-    <label for="selected_skill">Select a Skill:</label>
-    <select name="selected_skill" id="selected_skill">
+<label for="price_per_item">
+    Price/Item [each]: 
+    <abbr title="Enter the price per item, if applicable." onclick="showExplanation('pricePerItemExplanation')">ℹ️</abbr>
+</label>
+<input type="number" name="price_per_item" id="price_per_item" <?php echo isset($_POST['use_price_item']) && $_POST['use_price_item'] == 'on' ? 'disabled' : ''; ?> value="<?php echo isset($_POST['price_per_item']) ? htmlspecialchars($_POST['price_per_item']) : ''; ?>"><br>
+<div id="pricePerItemExplanation" class="explanation" style="display: none;">
+    Enter the price per item, if applicable.
+</div>
+
+<input type="checkbox" name="use_xp_item" id="use_xp_item" <?php echo isset($_POST['use_xp_item']) && $_POST['use_xp_item'] == 'on' ? 'checked' : ''; ?>>
+<label for="use_xp_item">
+    Exclude XP/Item 
+    <abbr title="Check to exclude XP/Item calculations." onclick="showExplanation('useXpItemExplanation')">ℹ️</abbr>
+</label><br>
+<div id="useXpItemExplanation" class="explanation" style="display: none;">
+    Check to exclude XP/Item calculations.
+</div>
+
+<input type="checkbox" name="use_price_item" id="use_price_item" <?php echo isset($_POST['use_price_item']) && $_POST['use_price_item'] == 'on' ? 'checked' : ''; ?>>
+<label for="use_price_item">
+    Exclude Price/Item 
+    <abbr title="Check to exclude Price/Item calculations." onclick="showExplanation('usePriceItemExplanation')">ℹ️</abbr>
+</label><br>
+<div id="usePriceItemExplanation" class="explanation" style="display: none;">
+    Check to exclude Price/Item calculations.
+</div>
+
+<label for="selected_skill">
+    Select a Skill: 
+    <abbr title="Select the skill you want to calculate leveling for." onclick="showExplanation('selectedSkillExplanation')">ℹ️</abbr>
+</label>
+<select name="selected_skill" id="selected_skill">
+<div id="selectedSkillExplanation" class="explanation" style="display: none;">
+    Select the skill you want to calculate leveling for.
+</div>
+
+<script>
+function showExplanation(id) {
+    var explanation = document.getElementById(id);
+    if (explanation.style.display === "none") {
+        explanation.style.display = "block";
+    } else {
+        explanation.style.display = "none";
+    }
+}
+</script>
+
          <?php
             $skills = array(
                 "Attack", "Strength", "Defence", "Prayer", "Magic", "Construction", "Herblore", "Crafting", "Fletching", "Smithing", "Cooking", 
@@ -358,10 +417,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Format total cost
                 $formattedCost = number_format($totalCost, 0);
-
+				echo "<div class='result'>";
+				echo "<h2>$username</h2>";
                 // Output the results
-                echo "<div class='result'>";
-                echo "<h2>$username's Current $selectedSkill Level: " . $info[$selectedSkill]["level"] . "</h2>";
+                
+                // Display in-game avatar
+                echo "<img id='avatar' alt='In-game Avatar' style='width: 100px; height: 100px;'>";
+                echo "<script>";
+                echo "var username = '" . htmlspecialchars($username) . "';";
+                echo "document.getElementById('avatar').src = 'http://secure.runescape.com/m=avatar-rs/' + username + '/chat.png';";
+                echo "</script>";
+
+                echo "<h2>Current $selectedSkill Level: " . $info[$selectedSkill]["level"] . "</h2>";
+				
                 echo "<h3>Estimated Time and Cost to Reach Level $selectedLevel $selectedSkill:</h3>";
 				echo "<p><u><b>XP per Hour</u></b>: $xpPerHour</p>";
                 echo "<p><u><b>XP Required</u></b>: $xpRequired</p>";
@@ -397,8 +465,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p class='error'>Failed to fetch player information. Please try again.</p>";
     }
 }
-
 ?>
-<!-- [Version 1.1.0] - 2024-05-06 -->
+<!-- [Version 1.1.1] - 2024-05-06 -->
 </body>
 </html>
