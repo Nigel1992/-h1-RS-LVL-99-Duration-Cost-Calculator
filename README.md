@@ -35,8 +35,22 @@ This application utilizes the RuneScape Hiscores API to fetch player information
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
+## Changelog
+
+### [Version 1.1.0] - 2024-05-06
+
+#### Changed
+- Updated background and text colors for better readability and user experience.
+- Enhanced styling of form elements to maintain consistency and improve aesthetics.
+- Added checkbox functionality to remember username with JavaScript implementation.
+- Improved input field styling to ensure better alignment and appearance.
+- Enhanced JavaScript logic for checkbox functionality, enabling dynamic field behavior.
+- Refined result display format and error messages for clarity and user guidance.
+- Optimized code structure and formatting for improved maintainability.
 
 ## NOTE
 This code was made by AI and tested by me.
 <br>
 Feel free to contact me on Discord for any help or suggestions: nigel.92
+
+
