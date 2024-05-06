@@ -5,30 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RuneScape Leveling Cost & Duration Calculator</title>
     <link rel="icon" type="image/png" href="https://runescape.wiki/images/Hourglass.png">
+    <!-- Updated CSS styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f5f5f5;
+            background-color: #272727;
+            color: #fff;
         }
 
         h1 {
-            color: #333;
+            color: #4caf50;
             text-align: center;
             margin-bottom: 20px;
         }
 
         form {
-            background-color: #fff;
+            background-color: #333;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
+            color: #4caf50;
         }
 
         input[type="text"],
@@ -36,8 +39,10 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #4caf50;
             border-radius: 5px;
+            background-color: #444;
+            color: #fff;
         }
 
         input[type="checkbox"] {
@@ -59,36 +64,67 @@
         }
 
         .result {
-            background-color: #fff;
+            background-color: #333;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             margin-top: 20px;
         }
 
         .result h2 {
-            color: #333;
+            color: #4caf50;
             margin-bottom: 10px;
         }
 
         .result p {
             margin: 5px 0;
+            color: #fff;
         }
 
         .error {
-            color: #f00;
+            color: #ff5252;
             font-weight: bold;
             margin-top: 10px;
         }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+		
+		 /* CSS styles remain unchanged */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: auto; /* Allow input fields to resize */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            box-sizing: border-box; /* Include padding and border in the width */
+        }
+		
+		
     </style>
 </head>
 <body>
 
 <h1>RuneScape Leveling Cost & Duration Calculator</h1>
 
-<form method="post">
+<form id="calcForm" method="post">
     <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"><br>
+    <input type="text" name="username" id="username" required value="<?php echo isset($_COOKIE['saved_username']) ? htmlspecialchars($_COOKIE['saved_username']) : ''; ?>"><br>
+	
+	<!-- Checkbox to save username -->
+    <input type="checkbox" id="saveUsernameCheckbox">
+    <label for="saveUsernameCheckbox">Remember Username</label><br>
 
     <label for="xp_per_hour">XP/Hour:</label>
     <input type="number" name="xp_per_hour" id="xp_per_hour" required value="<?php echo isset($_POST['xp_per_hour']) ? htmlspecialchars($_POST['xp_per_hour']) : ''; ?>"><br>
@@ -106,25 +142,23 @@
     <label for="use_price_item">Exclude Price/Item</label><br>
 
     <label for="selected_skill">Select a Skill:</label>
-<select name="selected_skill" id="selected_skill">
+    <select name="selected_skill" id="selected_skill">
          <?php
             $skills = array(
-    "Attack", "Strength", "Defence", "Prayer", "Magic", "Construction", "Herblore", "Crafting", "Fletching", "Smithing", "Cooking", 
-    "Farming", "Agility", "Thieving", "Ranged", "Mining", "Woodcutting", "Firemaking", "Runecrafting", 
-    "Hunter", "Slayer", "Fishing", "Summoning", "Dungeoneering", "Divination", "Invention", "Archaeology", 
-    "Necromancy"
-);
+                "Attack", "Strength", "Defence", "Prayer", "Magic", "Construction", "Herblore", "Crafting", "Fletching", "Smithing", "Cooking", 
+                "Farming", "Agility", "Thieving", "Ranged", "Mining", "Woodcutting", "Firemaking", "Runecrafting", 
+                "Hunter", "Slayer", "Fishing", "Summoning", "Dungeoneering", "Divination", "Invention", "Archaeology", 
+                "Necromancy"
+            );
+            sort($skills); // Sort the array alphabetically
 
-
-        sort($skills); // Sort the array alphabetically
-
-        foreach ($skills as $skill) {
-            $selected = isset($_POST['selected_skill']) && $_POST['selected_skill'] === $skill ? 'selected' : '';
-            echo "<option value='$skill' $selected>$skill</option>";
-        }
-    ?>
-</select>
-<br><br>
+            foreach ($skills as $skill) {
+                $selected = isset($_POST['selected_skill']) && $_POST['selected_skill'] === $skill ? 'selected' : '';
+                echo "<option value='$skill' $selected>$skill</option>";
+            }
+        ?>
+    </select>
+    <br><br>
 
     <label for="selected_level">Enter a Level:</label>
     (Type MAX for 200m XP)
@@ -133,6 +167,77 @@
 
     <input type="submit" value="Calculate">
 </form>
+
+<!-- JavaScript code -->
+<script>
+    // Function to set a cookie with the username
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    // Function to get the value of a cookie
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    // Function to handle saving username when checkbox is checked
+    function handleSaveUsername() {
+        var usernameInput = document.getElementById('username');
+        var saveUsernameCheckbox = document.getElementById('saveUsernameCheckbox');
+        if (saveUsernameCheckbox.checked) {
+            setCookie('saved_username', usernameInput.value, 30); // Save username for 30 days
+        } else {
+            setCookie('saved_username', '', -1); // Remove saved username
+        }
+    }
+
+    // Add event listener to saveUsernameCheckbox
+    document.getElementById('saveUsernameCheckbox').addEventListener('change', handleSaveUsername);
+
+    // Initialize the checkbox state based on the saved username
+    var savedUsername = getCookie('saved_username');
+    if (savedUsername) {
+        document.getElementById('username').value = savedUsername;
+        document.getElementById('saveUsernameCheckbox').checked = true;
+    }
+</script>
+
+<!-- JavaScript code -->
+<script>
+    // Get references to the checkbox and input fields
+    const useXpItemCheckbox = document.getElementById('use_xp_item');
+    const xpPerItemInput = document.getElementById('xp_per_item');
+    const usePriceItemCheckbox = document.getElementById('use_price_item');
+    const pricePerItemInput = document.getElementById('price_per_item');
+
+    // Function to enable or disable input fields based on checkbox state
+    function toggleInputs() {
+        xpPerItemInput.disabled = useXpItemCheckbox.checked;
+        pricePerItemInput.disabled = usePriceItemCheckbox.checked;
+    }
+
+    // Add event listeners to checkboxes
+    useXpItemCheckbox.addEventListener('change', toggleInputs);
+    usePriceItemCheckbox.addEventListener('change', toggleInputs);
+
+    // Initial call to toggleInputs to set initial state
+    toggleInputs();
+</script>
 
 <?php
 
@@ -258,8 +363,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<div class='result'>";
                 echo "<h2>$username's Current $selectedSkill Level: " . $info[$selectedSkill]["level"] . "</h2>";
                 echo "<h3>Estimated Time and Cost to Reach Level $selectedLevel $selectedSkill:</h3>";
+				echo "<p><u><b>XP per Hour</u></b>: $xpPerHour</p>";
                 echo "<p><u><b>XP Required</u></b>: $xpRequired</p>";
-                echo "<p><u><b>XP per Hour</u></b>: $xpPerHour</p>";
                 if ($hoursRequired > 0) {
                     echo "<p><u><b>Hours Required</u></b>: $hoursRequired hours";
                     if ($minutesRequired > 0) {
