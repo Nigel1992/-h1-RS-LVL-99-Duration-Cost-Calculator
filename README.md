@@ -23,7 +23,7 @@ This web application provides a convenient way to estimate the time and cost req
 - Get detailed estimates for hours, minutes, and cost required to reach your goal.
 - See how the duration changes based on different hours per day.
 
-## Example
+## Example [version 1.0.0]
 Using my account, prayer with Dragon Bones + Burial Powder
 ![image](https://github.com/Nigel1992/RuneScape-LVL-99-120-Cost-Duration-Calculator/assets/5491930/158edf73-bc9d-4538-a5bf-10bc26ae035f)
 
