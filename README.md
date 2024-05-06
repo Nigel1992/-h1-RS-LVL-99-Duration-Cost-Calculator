@@ -25,7 +25,8 @@ This web application provides a convenient way to estimate the time and cost req
 
 ## Example [version 1.0.0]
 Using my account, prayer with Dragon Bones + Burial Powder
-![image](https://github.com/Nigel1992/RuneScape-LVL-99-120-Cost-Duration-Calculator/assets/5491930/158edf73-bc9d-4538-a5bf-10bc26ae035f)
+![image](https://github.com/Nigel1992/RuneScape-Leveling-Cost-Duration-Calculator/assets/5491930/3482c184-4799-449a-b6bb-c2a2979d3052)
+
 
 ## How to Use
 1. Clone or download the repository to your local machine.
