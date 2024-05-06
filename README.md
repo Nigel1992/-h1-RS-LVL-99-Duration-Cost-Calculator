@@ -59,6 +59,9 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - Enhanced JavaScript logic for checkbox functionality, enabling dynamic field behavior.
 - Refined result display format and error messages for clarity and user guidance.
 - Optimized code structure and formatting for improved maintainability.
+- Added clickable information icons next to each input field for better user guidance.
+- Rearranged the layout to display information boxes above each input label and below the main text for improved visibility and user-friendliness.
+- Implemented JavaScript functionality to toggle the visibility of information boxes when the corresponding information icon is clicked.
 
 ## NOTE
 This code was made by AI and tested by me.
