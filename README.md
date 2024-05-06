@@ -49,8 +49,16 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Changelog
 
-### Version 1.1.0 - 2024-05-06
+### [Version 1.1.1] - [2024-05-06]
+#### Changed
 
+- Added feature to display the user's in-game avatar dynamically based on the provided username.
+- Integrated JavaScript to fetch and display the avatar image above the player's current skill level information.
+- Updated HTML and PHP code to include the in-game avatar display functionality.
+- Improved user experience by providing visual representation of the user's in-game identity.
+
+
+### Version 1.1.0 - 2024-05-06
 #### Changed
 - Updated background and text colors for better readability and user experience.
 - Enhanced styling of form elements to maintain consistency and improve aesthetics.
